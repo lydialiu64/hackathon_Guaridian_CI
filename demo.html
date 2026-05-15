@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guardians of CI Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              canvas: "#080b12",
+              cyan: "#38d4ff",
+              signal: "#ff9f43",
+              danger: "#ff4d6d",
+              success: "#46e6a6",
+            },
+            boxShadow: {
+              glow: "0 0 36px rgba(56, 212, 255, 0.18)",
+              amber: "0 0 30px rgba(255, 159, 67, 0.2)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body { margin: 0; background: #080b12; color: #e5edf8; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .glass { border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.055); backdrop-filter: blur(18px); border-radius: 8px; box-shadow: 0 0 36px rgba(56,212,255,.13); }
+      .badge { display: inline-flex; align-items: center; gap: 6px; border-radius: 6px; border: 1px solid rgba(56,212,255,.35); background: rgba(56,212,255,.1); padding: 4px 8px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #cff6ff; }
+      .badge.warn { border-color: rgba(255,159,67,.5); background: rgba(255,159,67,.1); color: #ffe0b3; }
+      .badge.danger { border-color: rgba(255,77,109,.55); background: rgba(255,77,109,.1); color: #ffc5d0; }
+      .badge.ok { border-color: rgba(70,230,166,.45); background: rgba(70,230,166,.1); color: #c6ffe7; }
+      .bgfx { position: fixed; inset: 0; pointer-events: none; background: radial-gradient(circle at 18% 14%, rgba(56,212,255,.16), transparent 32%), radial-gradient(circle at 86% 8%, rgba(255,159,67,.12), transparent 30%), linear-gradient(135deg, rgba(20,31,50,.86), #080b12); }
+      @keyframes scan { 0% { transform: translateX(-20%); opacity: .2; } 50% { opacity: .9; } 100% { transform: translateX(20%); opacity: .2; } }
+      .scan { animation: scan 2.2s ease-in-out infinite; }
+    </style>
+  </head>
+  <body>
+    <div class="bgfx"></div>
+    <main class="relative mx-auto flex max-w-[1480px] flex-col gap-6 px-4 py-5 sm:px-6 lg:px-8">
+      <header class="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <div class="mb-3 flex flex-wrap items-center gap-2">
+            <span class="badge">DevOps AI Control Plane</span>
+            <span class="badge warn">Prediction Confidence 92%</span>
+          </div>
+          <h1 class="text-4xl font-semibold text-white sm:text-5xl">Guardians of CI</h1>
+          <p class="mt-2 max-w-3xl text-base text-slate-300">Predicting CI failures before they happen through environment validation, drift detection, and code change impact analysis.</p>
+        </div>
+        <section class="glass grid min-w-[300px] grid-cols-3 gap-3 p-4">
+          <div class="rounded-lg border border-white/10 bg-slate-950/40 p-3"><p class="text-xs text-slate-400">VMs scanned</p><p class="mt-1 text-xl font-semibold text-emerald-200">42</p></div>
+          <div class="rounded-lg border border-white/10 bg-slate-950/40 p-3"><p class="text-xs text-slate-400">Drift alerts</p><p class="mt-1 text-xl font-semibold text-amber-100">7</p></div>
+          <div class="rounded-lg border border-white/10 bg-slate-950/40 p-3"><p class="text-xs text-slate-400">Blocked runs</p><p class="mt-1 text-xl font-semibold text-rose-200">3</p></div>
+        </section>
+      </header>
+
+      <section class="glass p-3">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div class="text-sm font-semibold text-slate-200">Live Bamboo Pipeline</div>
+          <div class="grid flex-1 grid-cols-2 gap-2 md:grid-cols-4">
+            <div class="rounded-md border border-white/10 bg-slate-950/50 px-3 py-2 text-sm"><span class="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-cyan shadow-[0_0_16px_rgba(56,212,255,.9)]"></span>Commit</div>
+            <div class="rounded-md border border-white/10 bg-slate-950/50 px-3 py-2 text-sm"><span class="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-cyan shadow-[0_0_16px_rgba(56,212,255,.9)]"></span>Validation</div>
+            <div class="rounded-md border border-white/10 bg-slate-950/50 px-3 py-2 text-sm"><span class="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-cyan shadow-[0_0_16px_rgba(56,212,255,.9)]"></span>Analysis</div>
+            <div class="rounded-md border border-white/10 bg-slate-950/50 px-3 py-2 text-sm"><span class="mr-2 inline-block h-2.5 w-2.5 rounded-full bg-cyan shadow-[0_0_16px_rgba(56,212,255,.9)]"></span>Prediction</div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="grid gap-3 md:grid-cols-4">
+        <button class="step rounded-lg border border-cyan-300/70 bg-cyan-300/10 p-4 text-left shadow-glow" data-step="0"><span class="text-xs font-semibold uppercase tracking-[.16em] text-slate-400">Step 1</span><p class="mt-2 text-sm font-semibold text-white">Environment Baseline Policy</p></button>
+        <button class="step rounded-lg border border-white/10 bg-white/[.04] p-4 text-left hover:border-white/25" data-step="1"><span class="text-xs font-semibold uppercase tracking-[.16em] text-slate-400">Step 2</span><p class="mt-2 text-sm font-semibold text-white">VM Compatibility Validation</p></button>
+        <button class="step rounded-lg border border-white/10 bg-white/[.04] p-4 text-left hover:border-white/25" data-step="2"><span class="text-xs font-semibold uppercase tracking-[.16em] text-slate-400">Step 3</span><p class="mt-2 text-sm font-semibold text-white">CI Change Impact Analysis</p></button>
+        <button class="step rounded-lg border border-white/10 bg-white/[.04] p-4 text-left hover:border-white/25" data-step="3"><span class="text-xs font-semibold uppercase tracking-[.16em] text-slate-400">Step 4</span><p class="mt-2 text-sm font-semibold text-white">Execution Risk Assessment</p></button>
+      </nav>
+
+      <section class="grid gap-5 xl:grid-cols-[1.15fr_.85fr]">
+        <div class="flex flex-col gap-5">
+          <section class="panel glass border-cyan-300/40 p-5" data-panel="0">
+            <div class="flex items-start justify-between"><div><p class="text-xs font-semibold uppercase tracking-[.16em] text-cyan-100">Step 1</p><h2 class="mt-2 text-xl font-semibold text-white">Environment Baseline Policy</h2></div><span class="badge">Live</span></div>
+            <div class="mt-5 grid gap-4 lg:grid-cols-[1.1fr_.9fr]">
+              <div>
+                <div class="mb-3 flex items-center justify-between"><h3 class="text-sm font-semibold">Requirement Builder</h3><button id="addRule" class="rounded-md border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-100">Add Rule</button></div>
+                <div id="rules" class="space-y-2"></div>
+              </div>
+              <div class="rounded-lg border border-cyan-300/20 bg-slate-950/70 p-4">
+                <div class="mb-3 flex items-center justify-between"><span class="text-sm font-semibold text-cyan-100">Live Policy Preview</span><span class="badge ok">Valid</span></div>
+                <pre id="yaml" class="overflow-auto rounded-md bg-black/45 p-4 text-sm leading-6 text-cyan-100"></pre>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel glass p-5" data-panel="1">
+            <div class="flex items-start justify-between"><div><p class="text-xs font-semibold uppercase tracking-[.16em] text-cyan-100">Step 2</p><h2 class="mt-2 text-xl font-semibold text-white">VM Compatibility Validation</h2></div><span class="badge">Live</span></div>
+            <div class="mt-5 grid gap-4 xl:grid-cols-[170px_1fr_170px]">
+              <div class="space-y-2" id="vms"></div>
+              <div class="overflow-hidden rounded-lg border border-white/10">
+                <table class="w-full min-w-[520px] border-collapse text-sm">
+                  <thead class="bg-white/[.06] text-left text-xs uppercase tracking-[.14em] text-slate-400"><tr><th class="px-4 py-3">Component</th><th class="px-4 py-3">Required</th><th class="px-4 py-3">Actual</th><th class="px-4 py-3">Status</th></tr></thead>
+                  <tbody id="envRows"></tbody>
+                </table>
+              </div>
+              <div class="rounded-lg border border-white/10 bg-slate-950/45 p-4 text-center">
+                <div class="mx-auto mt-4 grid h-28 w-28 place-items-center rounded-full border-[10px] border-cyan/70 border-r-amber-400 text-2xl font-semibold text-white"><span id="score">87%</span></div>
+                <p class="mt-3 text-sm font-semibold">Compatible</p><p id="drift" class="mt-2 text-xs text-amber-100">Python runtime mismatch</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="flex flex-col gap-5">
+          <section class="panel glass p-5" data-panel="2">
+            <div class="flex items-start justify-between"><div><p class="text-xs font-semibold uppercase tracking-[.16em] text-cyan-100">Step 3</p><h2 class="mt-2 text-xl font-semibold text-white">CI Change Impact Analysis</h2></div><span class="badge">Live</span></div>
+            <div class="mt-5 grid gap-3 sm:grid-cols-4">
+              <div class="rounded-lg border border-white/10 bg-slate-950/40 p-3"><p class="text-xs text-slate-400">Commit</p><p class="mt-1 text-xl font-semibold">a8f2d91</p></div>
+              <div class="rounded-lg border border-white/10 bg-slate-950/40 p-3"><p class="text-xs text-slate-400">Branch</p><p class="mt-1 text-xl font-semibold">login-refactor</p></div>
+              <div class="rounded-lg border border-white/10 bg-slate-950/40 p-3"><p class="text-xs text-slate-400">Files Changed</p><p class="mt-1 text-xl font-semibold text-amber-100">18</p></div>
+              <div class="rounded-lg border border-white/10 bg-slate-950/40 p-3"><p class="text-xs text-slate-400">Tests Impacted</p><p class="mt-1 text-xl font-semibold text-rose-200">6</p></div>
+            </div>
+            <div class="mt-5 grid gap-4 lg:grid-cols-[.9fr_1.1fr]">
+              <div class="rounded-lg border border-white/10 bg-slate-950/45 p-4"><h3 class="mb-3 text-sm font-semibold">Code Diff Timeline</h3><div id="files" class="space-y-3"></div></div>
+              <div class="space-y-3"><h3 class="text-sm font-semibold">AI Findings Panel</h3><div id="findings" class="space-y-3"></div><div class="rounded-lg border border-cyan-300/20 bg-cyan-300/[.035] p-4"><h3 class="mb-4 text-sm font-semibold">Dependency Impact Graph</h3><div class="grid grid-cols-3 gap-2 text-center text-xs"><div class="rounded-md border border-white/10 bg-slate-950/60 px-2 py-3">Selenium 4.18</div><div class="rounded-md border border-white/10 bg-slate-950/60 px-2 py-3">ChromeDriver 124</div><div class="rounded-md border border-white/10 bg-slate-950/60 px-2 py-3">Login Regression</div></div></div></div>
+            </div>
+          </section>
+
+          <section class="panel glass p-5" data-panel="3">
+            <div class="flex items-start justify-between"><div><p class="text-xs font-semibold uppercase tracking-[.16em] text-cyan-100">Step 4</p><h2 class="mt-2 text-xl font-semibold text-white">Execution Risk Assessment</h2></div><span class="badge">Live</span></div>
+            <div class="mt-5 rounded-lg border border-rose-300/40 bg-gradient-to-r from-rose-500/20 via-amber-400/10 to-cyan-300/10 p-5">
+              <span class="badge danger">AI Prediction</span><h2 class="mt-3 text-3xl font-semibold text-white">HIGH EXECUTION FAILURE RISK</h2><p class="mt-2 text-cyan-100">Confidence 92%</p>
+            </div>
+            <div class="mt-5 grid gap-4 lg:grid-cols-[.95fr_1.05fr]">
+              <div class="rounded-lg border border-white/10 bg-slate-950/45 p-4"><h3 class="mb-3 text-sm font-semibold">Risk Matrix</h3><div class="grid grid-cols-3 gap-2 text-xs font-semibold uppercase tracking-[.12em] text-slate-400"><span>Environment</span><span>Code Change</span><span>Final</span></div><div id="matrix" class="mt-2 space-y-2"></div></div>
+              <div class="rounded-lg border border-white/10 bg-slate-950/45 p-4"><h3 class="mb-3 text-sm font-semibold">Root Cause Prediction</h3><div class="space-y-4 text-sm"><div class="rounded-md border border-white/10 bg-white/[.035] p-3"><span class="badge danger">Primary Failure Cause</span><p class="mt-2">Python runtime mismatch on Bamboo VM image</p></div><div class="rounded-md border border-white/10 bg-white/[.035] p-3"><span class="badge warn">Affected Test Suites</span><p class="mt-2">regression_login, smoke_checkout, auth_session_parallel</p></div><div class="rounded-md border border-white/10 bg-white/[.035] p-3"><span class="badge ok">Recommended Actions</span><p class="mt-2">Upgrade VM Python to 3.11, rebuild ChromeDriver, rerun impacted suite shard only</p></div></div></div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script>
+      const rules = [
+        ["Python", ">=", "3.11", "runtime"], ["Chrome", ">=", "125", "browser"], ["OS", "==", "Windows Server 2022", "image"], ["RAM", ">=", "8GB", "capacity"], ["Node.js", ">=", "20", "toolchain"]
+      ];
+      const vms = [["VM-qa-001", 87, "Python runtime mismatch"], ["VM-qa-002", 94, "Minor ChromeDriver lag"], ["VM-regression-07", 71, "OS image behind baseline"], ["VM-linux-chrome", 82, "Browser dependency mismatch"]];
+      const env = [["Python", ">=3.11", "3.9", "fail"], ["Chrome", ">=125", "126", "pass"], ["OS", "Windows 2022", "Windows 2019", "warning"], ["RAM", ">=8GB", "16GB", "pass"], ["Node.js", ">=20", "20.11", "pass"]];
+      const files = [["tests/login/regression_login.spec.ts", "modified", "Auth flow"], ["package-lock.json", "modified", "Selenium dependency"], ["ci/bamboo-plan.yaml", "modified", "VM image selector"], ["src/auth/session.ts", "modified", "Async token refresh"], ["tests/checkout/smoke_checkout.spec.ts", "impacted", "Shared fixture"]];
+      const findings = [["HIGH RISK", "Selenium dependency upgraded from 4.14 to 4.18", "Potential incompatibility with ChromeDriver 124 on legacy Bamboo images.", "danger"], ["MEDIUM RISK", "Login tests now depend on asyncio-backed fixtures", "Python runtimes below 3.10 may fail during parallel test setup.", "warn"], ["LOW RISK", "Checkout smoke suite uses shared session fixture", "Execution order has changed, but isolation remains within policy tolerance.", "ok"]];
+      function renderRules() {
+        document.querySelector("#rules").innerHTML = rules.map(r => `<div class="grid grid-cols-[1fr_70px_1fr_auto] items-center gap-2 rounded-md border border-white/10 bg-slate-950/45 p-2"><select class="min-w-0 rounded-md border border-white/10 bg-slate-900 px-2 py-2 text-sm"><option>${r[0]}</option></select><select class="rounded-md border border-white/10 bg-slate-900 px-2 py-2 text-sm"><option>${r[1]}</option><option><=</option><option>==</option></select><input class="min-w-0 rounded-md border border-white/10 bg-slate-900 px-2 py-2 text-sm" value="${r[2]}" readonly><span class="badge">${r[3]}</span></div>`).join("");
+        document.querySelector("#yaml").textContent = ["environment_policy:", ...rules.map(r => `  ${r[0].toLowerCase().replaceAll(".", "").replaceAll(" ", "_")}: "${r[1]}${r[2]}"`), "validation:", '  drift_detection: "enabled"', '  enforcement: "predictive"'].join("\n");
+      }
+      renderRules();
+      document.querySelector("#addRule").addEventListener("click", () => { rules.push(["ChromeDriver", ">=", "125", "driver"]); renderRules(); });
+      document.querySelector("#vms").innerHTML = vms.map((v, i) => `<button class="vm w-full rounded-md border px-3 py-3 text-left text-sm ${i === 0 ? "border-cyan-300/60 bg-cyan-300/10" : "border-white/10 bg-slate-950/40 hover:border-white/25"}" data-i="${i}">${v[0]}<span class="scan mt-1 block text-xs text-slate-500">scanning</span></button>`).join("");
+      document.querySelectorAll(".vm").forEach(btn => btn.addEventListener("click", e => { const v = vms[e.currentTarget.dataset.i]; document.querySelector("#score").textContent = `${v[1]}%`; document.querySelector("#drift").textContent = v[2]; document.querySelectorAll(".vm").forEach(x => x.className = "vm w-full rounded-md border border-white/10 bg-slate-950/40 px-3 py-3 text-left text-sm hover:border-white/25"); e.currentTarget.className = "vm w-full rounded-md border border-cyan-300/60 bg-cyan-300/10 px-3 py-3 text-left text-sm"; }));
+      document.querySelector("#envRows").innerHTML = env.map(r => `<tr class="border-t border-white/10 bg-slate-950/35"><td class="px-4 py-3 font-medium text-white">${r[0]}</td><td class="px-4 py-3 text-slate-300">${r[1]}</td><td class="px-4 py-3 text-slate-300">${r[2]}</td><td class="px-4 py-3 ${r[3] === "fail" ? "text-rose-200" : r[3] === "warning" ? "text-amber-100" : "text-emerald-200"}">${r[3]}</td></tr>`).join("");
+      document.querySelector("#files").innerHTML = files.map(f => `<div class="rounded-md border border-white/10 bg-white/[.035] p-3"><div class="flex items-center justify-between gap-2"><span class="truncate text-sm">${f[0]}</span><span class="badge ${f[1] === "impacted" ? "warn" : ""}">${f[1]}</span></div><p class="mt-1 text-xs text-slate-400">${f[2]}</p></div>`).join("");
+      document.querySelector("#findings").innerHTML = findings.map(f => `<div class="rounded-lg border border-white/10 bg-slate-950/45 p-4 shadow-amber hover:border-amber-300/40"><span class="badge ${f[3]}">${f[0]}</span><h4 class="mt-3 text-sm font-semibold">${f[1]}</h4><p class="mt-2 text-sm text-slate-400">${f[2]}</p></div>`).join("");
+      document.querySelector("#matrix").innerHTML = [["Low","Low","Safe","ok"],["Medium","High","Warning","warn"],["High","High","Critical","danger"]].map(r => `<div class="grid grid-cols-3 gap-2 rounded-md border border-white/10 bg-white/[.035] p-3 text-sm"><span>${r[0]}</span><span>${r[1]}</span><span class="badge ${r[3]}">${r[2]}</span></div>`).join("");
+      document.querySelectorAll(".step").forEach(btn => btn.addEventListener("click", e => {
+        const idx = e.currentTarget.dataset.step;
+        document.querySelectorAll(".step").forEach(x => x.className = "step rounded-lg border border-white/10 bg-white/[.04] p-4 text-left hover:border-white/25");
+        e.currentTarget.className = "step rounded-lg border border-cyan-300/70 bg-cyan-300/10 p-4 text-left shadow-glow";
+        document.querySelectorAll(".panel").forEach(p => p.classList.remove("border-cyan-300/40", "border-amber-300/50"));
+        const panel = document.querySelector(`[data-panel="${idx}"]`);
+        panel.classList.add(idx === "3" ? "border-amber-300/50" : "border-cyan-300/40");
+        panel.scrollIntoView({ behavior: "smooth", block: "center" });
+      }));
+    </script>
+  </body>
+</html>
