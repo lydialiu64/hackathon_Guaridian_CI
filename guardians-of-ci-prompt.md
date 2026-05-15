@@ -1,0 +1,144 @@
+# Guardians of CI Prompt
+
+```text
+Build a polished static web demo called "Guardians of CI".
+
+Concept:
+Guardians of CI is an enterprise DevOps dashboard that predicts CI/CD execution failures before they happen. It validates Bamboo VM environments, detects configuration drift, analyzes recent code changes, and produces an AI-powered execution risk assessment.
+
+Product tagline:
+Predicting CI Failures Before They Happen
+
+Visual style:
+- Dark mode enterprise dashboard
+- Inspired by GitHub Actions, Datadog, Grafana, Jenkins Blue Ocean
+- Professional, futuristic, but not flashy
+- Premium SaaS feel
+- Glassmorphism panels
+- Subtle neon blue and orange accents
+- Dense dashboard layout, not a marketing landing page
+- Responsive for desktop and tablet
+- Smooth hover states and lightweight animations
+
+Core workflow:
+Create a 4-step horizontal workflow stepper:
+
+1. Environment Baseline Policy
+2. VM Compatibility Validation
+3. CI Change Impact Analysis
+4. Execution Risk Assessment
+
+Step 1: Environment Baseline Policy
+Purpose: Define the required baseline for a valid CI execution environment.
+
+Include:
+- Requirement Builder panel
+- Dynamic-looking rules such as:
+  - Python Version >= 3.11
+  - Chrome Version >= 125
+  - OS == Windows Server 2022
+  - RAM >= 8GB
+  - Node.js >= 20
+- Operator selector UI: >=, <=, ==
+- Add Rule button
+- Validation badges
+- Live YAML policy preview panel
+
+Example YAML:
+environment_policy:
+  python: ">=3.11"
+  chrome: ">=125"
+  os: "windows-server-2022"
+  ram: ">=8GB"
+  node: ">=20"
+
+Step 2: VM Compatibility Validation
+Purpose: Scan Bamboo VMs and compare actual environment state against the baseline policy.
+
+Include:
+- VM list sidebar:
+  - VM-qa-001
+  - VM-qa-002
+  - VM-regression-07
+  - VM-linux-chrome
+- Environment comparison table:
+  - Component
+  - Required
+  - Actual
+  - Status
+- Example rows:
+  - Python | >=3.11 | 3.9 | Fail
+  - Chrome | >=125 | 126 | Pass
+  - OS | Windows 2022 | Windows 2019 | Warning
+  - RAM | >=8GB | 16GB | Pass
+  - Node.js | >=20 | 20.11 | Pass
+- Compatibility score card or circular chart
+- Potential blockers list
+- "Configuration Drift Detected" status
+
+Step 3: CI Change Impact Analysis
+Purpose: Analyze the latest commit and predict test instability caused by code or dependency changes.
+
+Include:
+- Commit summary:
+  - Commit: a8f2d91
+  - Branch: feature/login-refactor
+  - Files Changed: 18
+  - Test Modules Impacted: 6
+- Code diff timeline with modified files and impacted modules
+- Dependency impact visualization
+- AI Findings Panel with risk cards
+
+Example AI findings:
+HIGH RISK
+Selenium dependency upgraded from 4.14 to 4.18.
+Potential incompatibility with ChromeDriver 124.
+
+MEDIUM RISK
+Login tests now depend on asyncio-backed fixtures.
+Python runtimes below 3.10 may fail.
+
+LOW RISK
+Checkout smoke suite uses shared session fixture.
+Execution order changed but remains within policy tolerance.
+
+Step 4: Execution Risk Assessment
+Purpose: Show the final AI prediction result.
+
+Include:
+- Large hero result banner:
+  HIGH EXECUTION FAILURE RISK
+- AI Confidence Score: 92%
+- Risk matrix:
+  - Environment Risk
+  - Code Change Risk
+  - Final Result
+- Root cause prediction panel:
+  - Primary Failure Cause: Python runtime mismatch
+  - Affected Test Suites:
+    - regression_login
+    - smoke_checkout
+    - auth_session_parallel
+  - Recommended Actions:
+    - Upgrade VM Python to 3.11
+    - Rebuild ChromeDriver
+    - Rerun impacted test shard only
+
+Additional dashboard elements:
+- Animated CI pipeline:
+  Commit -> Validation -> Analysis -> Prediction
+- Status indicators using green, yellow, and red
+- Mock data throughout
+- Hover effects on cards
+- Loading or scanning animation
+- Reusable UI sections
+- Modern typography
+- Make the result look like a hackathon-winning enterprise AI DevOps demo
+
+Technical target:
+Create a single static HTML file using HTML, CSS, and JavaScript.
+No backend required.
+No real API calls required.
+Use mock data only.
+The page should be immediately demo-ready in a browser.
+```
